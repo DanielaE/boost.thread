@@ -51,6 +51,8 @@ namespace executors
           p.set_exception(current_exception());
         }
       }
+    private:
+      try_executing_one_task& operator=(const try_executing_one_task&);
     };
   public:
     /**
