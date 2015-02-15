@@ -72,7 +72,13 @@ namespace boost
   }
 }
 
+#ifdef BOOST_MSVC
+#define BOOST_THREAD_LOG \
+ __pragma(warning(suppress:4127)) /* conditional expression is constant */ \
+ if (true) {} else boost::thread_detail::dummy_stream
+#else
 #define BOOST_THREAD_LOG if (true) {} else boost::thread_detail::dummy_stream
+#endif
 #define BOOST_THREAD_END_LOG boost::thread_detail::dummy_stream
 
 #endif

@@ -21,6 +21,11 @@
 #define LOG \
   if (false) {} else std::cout << std::endl << __FILE__ << "[" << __LINE__ << "]"
 
+#ifdef BOOST_MSVC
+# pragma warning(disable: 4127) // conditional expression is constant
+# pragma warning(disable: 4267) // conversion from ... to ..., possible loss of data
+#endif
+
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
     template<typename T>
     typename boost::remove_reference<T>::type&& cast_to_rval(T&& t)

@@ -10,6 +10,11 @@
 
 #include <boost/thread/detail/config.hpp>
 
+#ifdef BOOST_MSVC
+# pragma warning(push)
+# pragma warning(disable: 4702) // unreachable code
+#endif
+
 // boost::thread::future requires exception handling
 // due to boost::exception::exception_ptr dependency
 
@@ -1162,7 +1167,7 @@ namespace boost
         detail::future_waiter waiter;
         waiter.add(f1);
         waiter.add(f2);
-        return waiter.wait();
+        return static_cast<unsigned>(waiter.wait());
     }
 
     template<typename F1,typename F2,typename F3>
@@ -1172,7 +1177,7 @@ namespace boost
         waiter.add(f1);
         waiter.add(f2);
         waiter.add(f3);
-        return waiter.wait();
+        return static_cast<unsigned>(waiter.wait());
     }
 
     template<typename F1,typename F2,typename F3,typename F4>
@@ -1183,7 +1188,7 @@ namespace boost
         waiter.add(f2);
         waiter.add(f3);
         waiter.add(f4);
-        return waiter.wait();
+        return static_cast<unsigned>(waiter.wait());
     }
 
     template<typename F1,typename F2,typename F3,typename F4,typename F5>
@@ -1195,7 +1200,7 @@ namespace boost
         waiter.add(f3);
         waiter.add(f4);
         waiter.add(f5);
-        return waiter.wait();
+        return static_cast<unsigned>(waiter.wait());
     }
 #else
     template<typename F1, typename... Fs>
@@ -1204,7 +1209,7 @@ namespace boost
     {
       detail::future_waiter waiter;
       waiter.add(f1, fs...);
-      return waiter.wait();
+      return static_cast<unsigned>(waiter.wait());
     }
 #endif // !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
 
@@ -5657,4 +5662,9 @@ namespace detail
 }
 
 #endif // BOOST_NO_EXCEPTION
+
+#ifdef BOOST_MSVC
+# pragma warning(pop)
+#endif
+
 #endif // header
