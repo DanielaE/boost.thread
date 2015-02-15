@@ -28,7 +28,7 @@ unsigned throw_one = 0xFFFF;
 #if defined _GLIBCXX_THROW
 inline void* operator new(std::size_t s) _GLIBCXX_THROW (std::bad_alloc)
 #elif defined BOOST_MSVC
-inline void* operator new(std::size_t s)
+void* operator new(std::size_t s)
 #else
 void* operator new(std::size_t s) throw (std::bad_alloc)
 #endif
@@ -40,7 +40,7 @@ void* operator new(std::size_t s) throw (std::bad_alloc)
 }
 
 #if defined BOOST_MSVC
-inline void operator delete(void* p)
+void operator delete(void* p)
 #else
 inline void operator delete(void* p) throw ()
 #endif

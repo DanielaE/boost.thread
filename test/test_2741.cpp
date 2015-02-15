@@ -38,6 +38,7 @@ BOOST_AUTO_TEST_CASE(test_native_handle)
   (void)(h); // unused
 #if defined(BOOST_THREAD_PLATFORM_WIN32)
   // ... window version
+  (void)h;
 #elif defined(BOOST_THREAD_PLATFORM_PTHREAD)
 
   int k = pthread_attr_setstacksize(h, MY_PTHREAD_STACK);

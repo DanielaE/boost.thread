@@ -18,6 +18,10 @@
 #   include <process.h>
 #endif
 
+#ifdef BOOST_MSVC
+#pragma warning(disable: 4702)
+#endif
+
 enum game_state
 {
     START,
