@@ -42,6 +42,8 @@ struct Clock
 class Pred
 {
   int& i_;
+
+  Pred& operator=(const Pred&);
 public:
   explicit Pred(int& i) :
     i_(i)

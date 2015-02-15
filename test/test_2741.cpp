@@ -37,6 +37,7 @@ void test_native_handle()
   boost::thread_attributes::native_handle_type* h = attrs.native_handle();
 #if defined(BOOST_THREAD_PLATFORM_WIN32)
   // ... window version
+  (void)h;
 #elif defined(BOOST_THREAD_PLATFORM_PTHREAD)
 
   int k = pthread_attr_setstacksize(h, MY_PTHREAD_STACK);

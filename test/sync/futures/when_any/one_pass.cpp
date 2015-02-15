@@ -28,6 +28,17 @@
 #include <boost/thread/future.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
+#ifdef BOOST_MSVC
+#pragma warning(disable: 4127) // conditional expression is constant
+
+#include <crtdbg.h>
+#define NO_ERROR_POPUP \
+  _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE); \
+  _CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
+#else
+#define NO_ERROR_POPUP
+#endif
+
 int p1()
 {
   return 123;
@@ -35,6 +46,7 @@ int p1()
 
 int main()
 {
+  NO_ERROR_POPUP
 #if defined BOOST_THREAD_PROVIDES_FUTURE_WHEN_ALL_WHEN_ANY
   if (0) // todo not yet implemented
   { // invalid future copy-constructible
