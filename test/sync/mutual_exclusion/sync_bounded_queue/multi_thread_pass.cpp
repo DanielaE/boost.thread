@@ -38,6 +38,8 @@ struct call_push
     q_.push(42);
 
   }
+
+  call_push& operator=(const call_push&);
 };
 
 struct call_push_2
@@ -58,6 +60,8 @@ struct call_push_2
     end_.count_down_and_wait();
 
   }
+
+  call_push_2& operator=(const call_push_2&);
 };
 
 struct call_pull
@@ -75,6 +79,8 @@ struct call_pull
     go_.count_down_and_wait();
     return q_.pull();
   }
+
+  call_pull& operator=(const call_pull&);
 };
 
 void test_concurrent_push_and_pull_on_empty_queue()

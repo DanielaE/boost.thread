@@ -33,6 +33,8 @@ struct func
       do_something(i);
     }
   }
+
+  func& operator=(const func&);
 };
 
 void do_something_in_current_thread()
