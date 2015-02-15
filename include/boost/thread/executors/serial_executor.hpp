@@ -46,6 +46,8 @@ namespace executors
         task(); // if task() throws promise is not set but as the the program terminates and should terminate there is no need to use try-catch here.
         p.set_value();
       }
+    private:
+      try_executing_one_task& operator=(const try_executing_one_task&);
     };
   public:
     /**

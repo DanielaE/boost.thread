@@ -10,6 +10,11 @@
 
 #include <boost/thread/detail/config.hpp>
 
+#ifdef BOOST_MSVC
+# pragma warning(push)
+# pragma warning(disable: 4702) // unreachable code
+#endif
+
 // boost::thread::future requires exception handling
 // due to boost::exception::exception_ptr dependency
 
@@ -1237,7 +1242,7 @@ namespace boost
     {
       detail::future_waiter waiter;
       waiter.add(f1, fs...);
-      return waiter.wait();
+      return static_cast<unsigned>(waiter.wait());
     }
 #endif // !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES)
 
@@ -5181,4 +5186,9 @@ namespace detail
 }
 
 #endif // BOOST_NO_EXCEPTION
+
+#ifdef BOOST_MSVC
+# pragma warning(pop)
+#endif
+
 #endif // header

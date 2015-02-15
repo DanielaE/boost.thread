@@ -78,18 +78,24 @@ namespace boost
       counter_is_not_zero(counter const& count) : count_(count) {}
       bool operator()() const { return count_ != 0; }
       counter const& count_;
+    private:
+      counter_is_not_zero& operator=(const counter_is_not_zero&);
     };
     struct counter_is_zero
     {
       counter_is_zero(counter const& count) : count_(count) {}
       bool operator()() const { return count_ == 0; }
       counter const& count_;
+    private:
+      counter_is_zero& operator=(const counter_is_zero&);
     };
     struct is_zero
     {
       is_zero(std::size_t& count) : count_(count) {}
       bool operator()() const { return count_ == 0; }
       std::size_t& count_;
+    private:
+      is_zero& operator=(const is_zero&);
     };
     struct not_equal
     {
@@ -97,6 +103,8 @@ namespace boost
       bool operator()() const { return x_ != y_; }
       std::size_t& x_;
       std::size_t& y_;
+    private:
+      not_equal& operator=(const not_equal&);
     };
   }
 } // namespace boost

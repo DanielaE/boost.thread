@@ -59,6 +59,8 @@ namespace boost
       {
         that_.waiters_.dec_and_notify_all();
       }
+    private:
+      around_wait& operator=(const around_wait&);
     };
 
     bool count_down(unique_lock<mutex> &lk)
