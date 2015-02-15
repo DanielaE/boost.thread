@@ -16,6 +16,10 @@
 #define LOG \
   if (false) {} else std::cout << std::endl << __FILE__ << "[" << __LINE__ << "]"
 
+#ifdef BOOST_MSVC
+# pragma warning(disable: 4127) // conditional expression is constant
+#endif
+
 boost::once_flag flag=BOOST_ONCE_INIT;
 int var_to_init=0;
 boost::mutex m;
