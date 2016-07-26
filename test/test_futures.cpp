@@ -23,6 +23,7 @@
 
 #ifdef BOOST_MSVC
 # pragma warning(disable: 4127) // conditional expression is constant
+# pragma warning(disable: 4267) // conversion from ... to ..., possible loss of data
 #endif
 
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
